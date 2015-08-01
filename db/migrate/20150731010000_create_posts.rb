@@ -3,11 +3,11 @@
 class CreatePosts < ActiveRecord::Migration
   def change
 
-    create_table  :posts do |t|
+    create_table  :posts do |x|
 
-      t.string  :title
-      t.string  :content
-      t.timestamps  null: false
+      x.string  :title
+      x.string  :content
+      x.timestamps  null: false
     end
   end
 end

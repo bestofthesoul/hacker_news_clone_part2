@@ -26,6 +26,7 @@
 #   tags.sample.posts << post
 # end
 
+# ABOVE DOESNT work, ermm, post tag relationship not built ....
 
 
 tag1 = Tag.create(name: "food")
