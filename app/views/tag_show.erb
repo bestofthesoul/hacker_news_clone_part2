@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Post Listings for TAG: <%= @tag.name%></h2>
+
+  <table border="1" style="width:100%">
+    <tr>
+      <th>Post Title</th> <th>Tag</th><br>
+    </tr>
+    <% @posts.each do |post| %>
+      <tr>
+        
+        <td>
+            <a href="/posts/<%= post.id %>">
+            <%= post.title %></a>
+        </td>
+
+        <td>
+          <% post.tags.each do |tag| %>
+
+            <a href="/tags/<%= tag.name %>">
+            <%= tag.name %></a>&nbsp;
+          <% end %>
+        </td>
+        
+        <br>
+      </tr>
+    
+    <% end %>
+  </table>
+
+</div>
+

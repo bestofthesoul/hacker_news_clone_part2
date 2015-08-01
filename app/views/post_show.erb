@@ -1,0 +1,43 @@
+<div class = "container">
+	<h1> Post:</h1>
+	<table border ="1.5", style ="width:100%">
+		<!-- 1st row -->
+		<tr>
+			<td style="width:20"> <b> Title </b> </td>
+			<td style="width:80"> <b> Content </b> </td>
+			<td style="width:80"> <b> Tags </b> </td>
+			<td style="width:80"> <b>  </b> </td>
+
+		</tr>
+		<!-- 2nd row ONWARDS -->
+
+		<tr>
+			<td style="width:20"><%= @post.title%> </td>
+			<td style="width:80"> <%= @post.content %></b> </td>
+
+			<td> 
+				<% @post.tags.each do |tag| %>
+				<a href="/tags/<%= tag.name %>">
+				<%= tag.name %></a>&nbsp;
+				<%end%>
+			</td>
+
+			<td>
+			<form action="/posts/<%= @post.id %>/edit" method="GET">
+			<input type="submit" value="Edit">
+			</form>
+			</td>
+
+		</tr>
+
+
+	</table>
+
+
+	<br>
+	<br>
+		<form action="/posts/<%= @post.id %>/delete" method="POST">
+    	<input type="submit" value="Delete">
+  		</form>
+
+</div>
