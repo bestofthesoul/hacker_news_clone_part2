@@ -1,0 +1,34 @@
+<!-- ERROR MESSAGING -->
+<center><b>Message to User:</b></center>
+<% if !@msg.nil? %>
+  <center><b><%= @msg %></b></center><br>
+<% end %>
+
+<br>
+
+
+
+
+<!-- 1) LOGGING IN -->
+
+  <div class="container">
+  <h2>LOG IN</h2>
+    <form action="/users/login" method="post">
+      <input type="text" placeholder ="email" name="email">
+      <input type="text" placeholder = "password" name="password">
+      <input type="submit" value="Log in">
+    </form>
+  </div>
+
+
+<!-- 2) SIGNING UP -->
+
+  <div class="container">
+    <p>*No Account Yet?</p>
+    <h2>SIGN UP here...</h2>
+    <form action="/users/create" method="post">
+      <input type="text" placeholder ="email" name="user[email]">
+      <input type="text" placeholder = "password" name="user[password]">
+      <input type="submit" value="Register">
+    </form>
+  </div>

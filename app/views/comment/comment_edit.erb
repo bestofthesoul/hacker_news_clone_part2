@@ -1,0 +1,22 @@
+<!-- ERROR MESSAGING -->
+<center><b>Message to User:</b></center>
+<% if !@msg.nil? %>
+	<center><b><%= @msg %></b></center><br>
+<% end %>
+
+<br>
+
+
+<div class="container">
+	<h2>Comment ID <%= @comment.id %></h2>
+<!-- users/:id/statuses/status_id/comments/comment_id/edit -->
+	<form action="/users/<%= @comment.user_id %>/posts/<%= @comment.post_id %>/comments/<%= @comment.id %>/edit" method="post">
+		<input type="hidden" name="_method" value="put">
+		Update Comment: <br/><br/>
+		<textarea type="text" name="comment" rows = "10" cols="20"><%= @comment.comment %></textarea>
+		<br>
+		<input type="submit" value="Submit">
+	</form>
+	
+</div>
+

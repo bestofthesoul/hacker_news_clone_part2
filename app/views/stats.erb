@@ -1,0 +1,33 @@
+<!-- ERROR MESSAGING -->
+<center><b>Message to User (<%= @user.email %>)</b></center>
+<% if !@msg.nil? %>
+<center><b><%= @msg %></b></center><br>
+<% end %>
+<br>
+
+<div class ="containers">
+   
+   <p>Hi, <%= @user.email %> </p>
+
+		<table border="1" style="width:50%">
+		<!-- HEADER  -->
+			<tr>
+			<th>Your Comments:</th>
+			</tr>
+
+			<!-- 2nd ROW ONWARDS -->
+			<% @comments.each do |x| %>
+			<tr>
+				<td>
+			  <a href="/users/<%= @user.id %>/posts/<%= x.post.id %>"><%= x.comment%>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+
+	</div>
+
+
+
+
+	</table>

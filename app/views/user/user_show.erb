@@ -1,0 +1,116 @@
+<!-- ERROR MESSAGING -->
+<center><b>Message to User:</b></center>
+<% if !@msg.nil? %>
+<center><b><%= @msg %></b></center><br>
+<% end %>
+<br>
+<!--LOG OUT ACCOUNT  -->
+	  <form action="/users/logout" method="post">
+		<input type="submit" value="Log out!">
+	  </form><br>
+
+	<!--EDIT ACCOUNT DETAILS  -->
+	  <form action="/users/<%= @user.id %>/edit" method="get">
+	  	<input type="submit" value="Edit account">
+	  </form><br>
+
+	<!--DELETE ACCOUNT  -->
+		<form action= "/users/<%= @user.id%>" method= "post">
+			<input  type="hidden" name="_method" value="delete">
+			<input type= "submit" value="Delete Acc!">
+		</form>	<br>
+		
+<!-- CREATE NEW POST -->
+<div class="container">
+	<h2>CREATE NEW POST</h2>
+		<form action="/users/<%= @user.id %>/posts/create" method="post">
+			<h2>What's on Your Mind?</h2>
+			<textarea type="text" name="post" rows ="5" cols="60"></textarea>
+			<input type= "submit" value="Create!">
+			<br><br>
+
+		</form>
+
+
+
+	<!-- MY POSTED POST SECTION -->
+<% if @user.posts.nil? %>
+<% else %>
+	<h2>MY POSTS</h2>
+		<table border="1" style="width:100%">
+		<!-- HEADER  -->
+		
+
+			<!-- 2nd ROW ONWARDS -->
+			<% @user.posts.order("id ASC").each do |post| %>
+			<tr>
+				<td>
+				<a href="/users/<%= @user.id %>/posts/<%= post.id %>"><%= post.post %></action>
+				</td>
+			</tr>
+			<% end %>
+		</table>
+			<% end %>
+
+
+	<!-- MY COMMENTS ON POSTS-->
+
+	<h2>ALL COMMENTS ON POSTS</h2>
+	<table border="1" style="width:100%">
+		<!-- HEADER  -->
+	<tr>
+	<th>Posts</th>	<th>Comments</th>
+	</tr>
+
+	<% @posts.order("id ASC").each do |post| %>
+	<tr>
+		<td><a href="/users/<%= @user.id %>/posts/<%= post.id %>"><%= post.post %></a>
+		</td>
+		
+		<td>
+		<% post.comments.order("id ASC").each do |comment| %>
+		
+		<%= comment.comment %>, </a>
+		
+		<% end %>
+		</td>
+		
+	</tr>
+	<% end %>
+
+	</table>
+
+<!-- VIEW OWN COMMENT -->
+<form action="/users/<%= @user.id %>/comments" method="get">
+<input type="submit" value="View My Comments">
+</form><br>
+
+
+
+	<!-- HACKER NEWS FEED -->
+
+	<h2>ALL POSTS</h2>
+
+
+	<table border="1" style="width:100%">
+		<!-- Header -->
+		<tr>
+		<th>Posts:</th>
+		</tr>
+		<!-- #2nd row onwards -->
+
+		<% @posts.each do |post| %>
+		<tr>
+			<td>
+			<a href="/users/<%= @user.id %>/posts/<%= post.id %>"><%= post.post %></a> 
+			</td>
+		</tr>
+		<%end%>
+	</table>
+
+
+
+
+
+
+</div >

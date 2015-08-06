@@ -1,0 +1,21 @@
+
+<!-- ERROR MESSAGING -->
+<center><b>Message to User:</b></center>
+<% if !@msg.nil? %>
+	<center><b><%= @msg %></b></center><br>
+<% end %>
+
+<br>
+
+
+
+<div class="container">
+	<h2>EDIT POST:</h2>
+	<form action="/users/<%= @user.id %>/posts/<%= @post.id %>/edit" method="post">
+		<input type="hidden" name="_method" value="put">
+		<textarea type="text" name="post" rows = "5" cols="60"><%= @post.post %></textarea>
+		<br><br>
+		<input type="submit" value="Post">
+	</form>
+</div>
+

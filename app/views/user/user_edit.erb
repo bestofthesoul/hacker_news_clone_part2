@@ -1,0 +1,29 @@
+
+<!-- ERROR MESSAGING -->
+<center><b>Message to User:</b></center>
+<% if !@msg.nil? %>
+	<center><b><%= @msg %></b></center><br>
+<% end %>
+
+<br>
+
+
+
+<div class="container">
+	<h2>EDIT ACCOUNT INFO</h2>
+	<form action="/users/<%= @user.id %>/edit" method="post">
+		<input type="hidden" name="_method" value="put">
+		<br>
+	    Email:
+	    <br>
+		<input type="text" name="user[email]" placeholder="<%= @user.email %>">
+		<br><br>
+		Password:
+		<br>
+		<input type="text" name="user[password]" placeholder="<%= @user.password %>">
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+

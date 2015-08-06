@@ -1,0 +1,85 @@
+<!-- ERROR MESSAGING -->
+<center><b>Message to User:</b></center>
+<% if !@msg.nil? %>
+	<center><b><%= @msg %></b></center><br>
+<% end %>
+
+<br>
+
+
+
+<div class="container">
+	<h2>Hi, <%=@user.email%></h2>
+
+	<h3>Post: </h3>
+	<p><%= @post.post %></p>
+
+
+<!-- # if I m viewing own post, i can edit n delete it -->
+	<% if @post.user.id == session[:id] %>
+		<!-- EDIT POST -->
+		<form action="/users/<%= @user.id %>/posts/<%= @post.id %>/edit">
+			<input type="submit" value="Edit Post">
+		</form>
+<br>
+		<!-- DELETE POST -->
+		<form action= "/users/<%= @user.id%>/posts/<%= @post.id %>" method= "post">
+	    	<input name="_method" type="hidden" value="delete">
+	    	<input type= "submit" value="Delete Post">
+		 </form>
+
+	<% end %>
+<br>
+
+<br>
+
+
+
+<!-- CREATE COMMENT ON THIS POST -->
+	<h3>Create New Comment:</h3>
+	<form action="/users/<%= @user.id %>/posts/<%= @post.id %>/comments/create" method="post">
+		<textarea type="text" name="comment" rows = "5" cols="60"></textarea>
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+
+<br>
+
+	<h3>All Other Comments:</h3>
+	
+	<% @comments.order("id ASC").each do |comment| %>
+		
+		<li>
+		<%= comment.comment %>
+		</li>
+		
+		<br>
+	<!-- IF ITS MY COMMENT, I CAN EDIT N DELETE -->
+		<% if comment.user_id == session[:id] %>
+		<!-- #edit -->
+			<form action="/users/<%= @user.id %>/posts/<%= @post.id %>/comments/<%= comment.id %>/edit">
+				<input type="submit" value="Edit Comment">
+			</form>
+<br>
+		<!-- delete -->
+			<form action= "/users/<%= @user.id%>/posts/<%= @post.id %>/comments/<%= comment.id %>" method= "post">
+				<input name="_method" type="hidden" value="delete">
+				<input type= "submit" value="Delete comment"><br><br>
+			</form>
+		<% end %>
+	<% end %>
+
+</div>
+
+
+
+
+
+<!--LOG OUT ACCOUNT  -->
+
+<div class="container">
+<h2>LOG OUT</h2>
+  <form action="/users/logout" method="post">
+	<input type="submit" value="Log out!">
+  </form>
+</div >
