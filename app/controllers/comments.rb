@@ -10,11 +10,13 @@ post '/users/:id/posts/:post_id/comments/create' do
 
 	@post = Post.find(params[:post_id])
 	if @comment.save
-		@msg = "New Comment is created"
-		redirect to "/users/#{@post.user_id}/posts/#{@post.id}"
+		# @msg = "New Comment is created"
+		# redirect to "/users/#{@post.user_id}/posts/#{@post.id}"
+		@comment.to_json
 	else
 		@msg = "Invalid Comment"
-		erb :"post/post_show"
+		# erb :"post/post_show"
+		@msg.to_json
 	end
 
 end

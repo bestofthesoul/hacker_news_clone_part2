@@ -3,6 +3,13 @@ enable :sessions
 
 require 'byebug'
 
+
+get '/' do
+	redirect to '/users'
+end
+
+
+
 # READ
 get '/users' do
 	if session[:id] != nil # ALREADY LOGGED IN

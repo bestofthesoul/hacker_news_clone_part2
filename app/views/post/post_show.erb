@@ -11,7 +11,7 @@
 <div class="container">
 	<h2>Hi, <%=@user.email%></h2>
 
-	<h3>Post: </h3>
+	<h5>Post: </h5>
 	<p><%= @post.post %></p>
 
 
@@ -29,29 +29,36 @@
 		 </form>
 
 	<% end %>
-<br>
 
-<br>
+<br><br>
+<!-- VOTE THIS POST-->
 
+	<h1>Vote this post</h1>
+	<form id ='postVote' action="/users/<%= @user.id %>/posts/<%= @post.id %>/votes" method="post">
+		<input type="submit" value="Vote">
+	</form>
+	<p id='vote-count'></p>
 
-
+<br><br>
 <!-- CREATE COMMENT ON THIS POST -->
-	<h3>Create New Comment:</h3>
-	<form action="/users/<%= @user.id %>/posts/<%= @post.id %>/comments/create" method="post">
+	<h5>Create New Comment:</h5>
+	<form id ='newComment' action="/users/<%= @user.id %>/posts/<%= @post.id %>/comments/create" method="post">
 		<textarea type="text" name="comment" rows = "5" cols="60"></textarea>
 		<br><br>
 		<input type="submit" value="Submit">
 	</form>
 
+
 <br>
 
-	<h3>All Other Comments:</h3>
-	
+	<h5>All Other Comments:</h5>
+	<ul id="comment_list">
 	<% @comments.order("id ASC").each do |comment| %>
 		
-		<li>
-		<%= comment.comment %>
-		</li>
+			<li>
+			<%= comment.comment %>
+			</li>
+		
 		
 		<br>
 	<!-- IF ITS MY COMMENT, I CAN EDIT N DELETE -->
@@ -68,6 +75,7 @@
 			</form>
 		<% end %>
 	<% end %>
+	</ul>
 
 </div>
 
@@ -78,7 +86,7 @@
 <!--LOG OUT ACCOUNT  -->
 
 <div class="container">
-<h2>LOG OUT</h2>
+<h5>LOG OUT</h5>
   <form action="/users/logout" method="post">
 	<input type="submit" value="Log out!">
   </form>
